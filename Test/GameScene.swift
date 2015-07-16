@@ -17,7 +17,6 @@ class GameScene: SKScene {
     var defenseNode: SKSpriteNode! = nil
     var player1Bar: EnergyBar! = nil
     var player2Bar: EnergyBar! = nil
-    var maxDistance = CGFloat(0.3)
     
     var inRange = true
     var defenseObject: AnyObject! = nil
@@ -109,8 +108,10 @@ class GameScene: SKScene {
         
         if fabs(player1.position.x - player2.position.x) > maxDistance && !inRange{
             self.runAction(SKAction.waitForDuration(2), completion: { () -> Void in
-                self.player1.updateMovement("right")
-                self.player2.updateMovement("left")
+                if (fabs(self.player1.position.x - self.player2.position.x) > maxDistance) {
+                    self.player1.updateMovement("right")
+                    self.player2.updateMovement("left")
+                }
             })
             self.inRange = true
             
@@ -122,6 +123,8 @@ class GameScene: SKScene {
             player1.updateMovement("stop")
             player2.updateMovement("stop")
         }
+        
+       
        
        
         

@@ -41,6 +41,7 @@ struct CollisionCategory {
 let personWidth = CGFloat(0.04) //person's width as a percentage of scene width. height is calculated from width
 let armWidth = CGFloat(0.045)
 var armsReach = CGFloat(1.5)
+var maxDistance = CGFloat(0.3)
 
 
 //~~~~~~~~~~~~~~~SWORD.SWIFT~~~~~~~~~~~~~~~~~~~~~~~~~

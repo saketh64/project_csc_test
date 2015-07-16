@@ -221,7 +221,7 @@ class Person: SKSpriteNode {
         
         slashing = true
         
-        self.startRunning(direction)
+        self.updateMovement(direction)
         self.runAction(SKAction.waitForDuration(0.5)) { () -> Void in
             self.updateMovement("stop")
             if self.swordUp {
@@ -299,24 +299,17 @@ class Person: SKSpriteNode {
     }
     
     func turnLeft() {
-        stopRunning()
+        self.updateMovement("stop")
         self.xScale = fabs(self.xScale) * CGFloat(-1.0)
         self.direction = "left"
     }
     
     func turnRight() {
-        stopRunning()
+        self.updateMovement("stop")
         self.xScale = fabs(self.xScale)
         self.direction = "right"
     }
     
-    func startRunning(inDirection: String) {
-        self.updateMovement(inDirection)
-    }
-    
-    func stopRunning() {
-        self.updateMovement("stop")
-    }
     
     func animate() {
         self.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(activeRunningFrames, timePerFrame: NSTimeInterval(timePerRunFrame), resize: false, restore: true)), withKey: "runningAnimation")
